@@ -114,7 +114,27 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
+
 	$application_folder = 'application';
+
+	$arr_modules = [
+		'admin',
+	];
+
+	$str_url = $_SERVER['REQUEST_URI'];
+	$str_url = strip_tags($str_url);
+	$arr_url = explode('?', $str_url);
+	$str_url = $arr_url[0];
+	if (!empty($str_url)) {
+		$arr_temp = explode('/', $str_url);
+		$arr_temp = array_filter($arr_temp);
+		$str_module = array_shift($arr_temp);
+		if (in_array($str_module, $arr_modules)) {
+			$application_folder = $str_module;
+		}
+	}
+
+	define('APPNAME', $application_folder);
 
 /*
  *---------------------------------------------------------------

@@ -239,6 +239,10 @@ class CI_URI {
 			return '/';
 		}
 
+		if (strpos($uri, APPNAME) === 0) {
+			$uri = (string) substr($uri, strlen(APPNAME));
+		}
+
 		// Do some final cleaning of the URI and return it
 		return $this->_remove_relative_directory($uri);
 	}
