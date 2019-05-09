@@ -17,7 +17,7 @@ class User extends Base_Controller
         $arrInput = $this->getGetData();
         $arrOutput = $this->user_service->userList($arrInput);
         if (false === $arrOutput) {
-            log_message('user call user_service userList fail. input:['.serialize($arrInput).'], output:['.serialize($arrOutput).']');
+            log_message('error', 'user call user_service userList fail. input:['.serialize($arrInput).'], output:['.serialize($arrOutput).']');
 
             return $this->returnJson(Statuscode::FAIL);
         }
